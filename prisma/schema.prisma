@@ -1,0 +1,131 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgres"
+  url      = env("DATABASE_URL_POSTGRES")
+}
+
+// datasource db {
+//   provider = "sqlite"
+//   url      = env("DATABASE_URL_SQLITE")
+// }
+
+model Season {
+  id                  Int        @id
+  name                String
+
+  createdBy           String
+  createdDate         DateTime   @default(now())
+  updatedBy           String
+  updatedDate         DateTime   @updatedAt
+
+  tournaments         Tournament[]
+  actions             Action[]
+} 
+
+model Tournament {
+  id                  Int        @id @default(autoincrement())
+  seasonId            Int
+  name                String
+  fromDate            DateTime
+  throughDate         DateTime?
+  search              String
+
+  createdBy           String
+  createdDate         DateTime   @default(now())
+  updatedBy           String
+  updatedDate         DateTime   @updatedAt
+
+  parentSeason        Season     @relation(fields: [seasonId], references: [id])
+} 
+
+model Match {
+  id                  Int        @id @default(autoincrement())
+  name                String
+
+  createdBy           String
+  createdDate         DateTime   @default(now())
+  updatedBy           String
+  updatedDate         DateTime   @updatedAt
+
+  metrics             Metric[]
+} 
+
+model Alliance {
+  id                  Int        @id @default(autoincrement())
+  name                String
+
+  createdBy           String
+  createdDate         DateTime   @default(now())
+  updatedBy           String
+  updatedDate         DateTime   @updatedAt
+
+  metrics             Metric[]
+} 
+
+model Team {
+  id            Int        @id
+  name          String
+  search        String
+
+  createdBy     String
+  createdDate   DateTime   @default(now())
+  updatedBy     String
+  updatedDate   DateTime   @updatedAt
+
+  metrics       Metric[]
+}
+
+model Action {
+  id                  Int        @id @default(autoincrement())
+
+  seasonId            Int
+  label               String
+  description         String
+  parentId            Int?
+  ordinal             Int
+
+  isActive            Boolean    @default(true)   // Can select in the app
+  isEnd               Boolean    @default(false)  // Represents the end of the Action chain
+
+  createdBy           String
+  createdDate         DateTime   @default(now())
+  updatedBy           String
+  updatedDate         DateTime   @updatedAt
+
+  parentAction        Action?   @relation("ActionRelations", fields: [parentId], references: [id])
+  childActions        Action[]  @relation("ActionRelations")
+  parentSeason        Season    @relation(fields: [seasonId], references: [id])
+  metrics             Metric[]
+
+  @@unique([seasonId, parentId, ordinal])
+}
+
+model Metric {
+  id               Int        @id @default(autoincrement())
+
+  tournamentId     Int
+  matchId          Int
+  round            Int  
+  allianceId       Int
+  teamId           Int
+
+  actionId         Int
+  fromDate         DateTime
+  throughDate      DateTime
+  
+  createdBy        String
+  createdDate      DateTime   @default(now())
+  updatedBy        String
+  updatedDate      DateTime   @updatedAt
+
+  teams            Team[]
+  action           Action     @relation(fields: [actionId], references: [id])
+  match            Match      @relation(fields: [matchId], references: [id])
+  alliance         Alliance   @relation(fields: [allianceId], references: [id])
+}
