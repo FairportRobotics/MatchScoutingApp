@@ -7,8 +7,8 @@
 - All lookup data and captured data is stored as JSON in localStorage. This is less-than ideal but good enough and fast enough to have allowed a reduced development cycle.
 
 
-## Setup he Development Environment
-- Download the source.
+## Setup the Development Environment
+- Download or clone the source
 - Open the source folder in VS Code
 - From a terminal (either external or the terminal integrated into VS Code) execute the following command
 
@@ -33,7 +33,7 @@ and the **.env** reflected the secret as:
 
     DATABASE_URL_LOCAL="file:./scouting-app.db"
 
-This allowed me to very easily delete the db and execute
+This allowed me to very easily delete the db and execute:
 
     npx prisma generate
     npx prisma db push
