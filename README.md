@@ -4,6 +4,7 @@
 - Deployed and hosted by Netlify
 - Navigate to https://benevolent-rolypoly-ae1a7c.netlify.app/ to execute the app.
 - App can be download as a PWA and run on any device offline (after refreshing the caches locally)
+- All lookup data and captured data is stored as JSON in localStorage. This is less-than ideal but good enough and fast enough to have allowed a reduced development cycle.
 
 
 ## Setup he Development Environment
@@ -41,7 +42,9 @@ Note that once a database is seeded, executing the **db seed* command again will
 
 ## Todo
 
-- Auth. I already have Supabase authenticating against the Azure AD. I removed it from the app as I had a brief issue where the app kept redirecting to /login. If we cannot get auth working. provide a means of allowing the user to enter their name and cache it for later upload.
+- Auth. I already have Supabase authenticating against the Azure AD. I removed it from the app as I had a brief issue where the app kept redirecting to /login. 
+    - Revisit auth against out AD instance If we do not want to bother...
+    - Provide a means of allowing the user to enter their name and cache it for later upload.
 - Add some instructions to index to explain the steps needed to:
     -  Download the app as a PWA
     - Update caches so user can operate offline
