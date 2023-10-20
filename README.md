@@ -73,15 +73,16 @@ Note that once a database is seeded, executing the **db seed* command again will
 
 ## Todo
 
+- Pinia for state management. Though Pinia uses localStorage under the hood, it provides a better interface to that data and provides hooks to detect when there are changes. It might make updting state easier than: retrieve data from LocalStorage > parse to JSON > make changes > serialzie to JSON > save to localStorage.
 - Auth. I already have Supabase authenticating against the Azure AD. I removed it from the app as I had a brief issue where the app kept redirecting to /login. 
     - Revisit configuring auth against our Azure AD instance. If we don't want to bother with that...
     - Provide a means of allowing the user to enter their name and cache it for later upload.
 - Add some instructions to index to explain the steps needed to:
-    -  Download the app as a PWA
+    - Download the app as a PWA
     - Update caches so user can operate offline
     - Briefily summarize how to drill into the data collection
 - Embiggen the buttons and text so it looks better on mobile.
 - Upon executing "Metrics" > "Upload all", only delete the locally cached data if we can validate that it was successfully uploaded.
-- Host db in Azure.
+- Host db in Azure. Mr Elmer mentioned Mongo. Can we run ad-hoc queries against the data easily enough?
 - Host app in Azure
 - Create a Fairport Robotics Supabase accout to support the stupid-simple OAth provider(s)? The app CAN support Azure/Google/Github currently as I have those configured in my Supabase account/project.
