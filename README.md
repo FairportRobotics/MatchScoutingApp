@@ -72,7 +72,7 @@ Note that once a database is seeded, executing the **db seed* command again will
 ## Todo
 
 - Auth. I already have Supabase authenticating against the Azure AD. I removed it from the app as I had a brief issue where the app kept redirecting to /login. 
-    - Revisit auth against out AD instance If we do not want to bother...
+    - Revisit configuring auth against our Azure AD instance. If we don't want to bother with that...
     - Provide a means of allowing the user to enter their name and cache it for later upload.
 - Add some instructions to index to explain the steps needed to:
     -  Download the app as a PWA
