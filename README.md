@@ -59,6 +59,16 @@ To seed data into the database, run the following command within a termina in th
 
 Note that once a database is seeded, executing the **db seed* command again will all the data in the script unless it is removed or commented out. This means that if you seed the data and later want to add new data, you will need to comment out some parts of the script and add new sections.
 
+
+## Operating the app
+
+- Navigate to the app
+- Follow the "Caches" link
+- Click the "Refresh" button(s) and the app will download the data from the db, and overwrite the local cache in localStorage.
+- Follow the "Scout" link to begin configuring and recording cycles for teams.
+- When complete, follow the "Metrics" link to view the data that has been captured.
+- When connected to a network, click the "Upload all" button. NOTE that this is destructive and remove the data from the local device. I will add a "todo" to make sure we only delete data from the local cache only if it was successfulyl uploaded.
+
 ## Todo
 
 - Auth. I already have Supabase authenticating against the Azure AD. I removed it from the app as I had a brief issue where the app kept redirecting to /login. 
@@ -69,4 +79,5 @@ Note that once a database is seeded, executing the **db seed* command again will
     - Update caches so user can operate offline
     - Briefily summarize how to drill into the data collection
 - Embiggen the buttons and text so it looks better on mobile.
+- Upon executing "Metrics" > "Upload all", only delete the locally cached data if we can validate that it was successfully uploaded.
 
