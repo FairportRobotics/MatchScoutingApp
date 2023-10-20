@@ -1,9 +1,12 @@
 ## Summary
 
-- Postgres DB in Supabase
-- Deployed and hosted by Netlify
+- Written in [Nuxt3.js](https://nuxt.com/) (Vue framework)
+- Styles by [Tailwind.css](https://tailwindcss.com/)
+- Backend is a Postgres DB in a personal [Supabase](https://supabase.com/) account. I'm not concerned with usag at this point as the free tier is quite generous. Additionally, I'm sure that whatever app we eventually write will use our Azure account.
+- Deployed and hosted by my personal [Netlify](https://www.netlify.com/) account. Again, I am not concerned as I know that whatever app we use will be hosted in Azure.
+- Schema and seed data managed by [Prisma](https://www.prisma.io/) as described below.
 - Navigate to https://benevolent-rolypoly-ae1a7c.netlify.app/ to execute the app.
-- App can be download as a PWA and run on any device offline (after refreshing the caches locally)
+- App can be download as a PWA ([Progressive Web App](https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps)) and run on any device offline (after refreshing the caches locally)
 - All lookup data and captured data is stored as JSON in localStorage. This is less-than ideal but good enough and fast enough to have allowed a reduced development cycle.
 
 
