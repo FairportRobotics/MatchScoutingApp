@@ -9,10 +9,10 @@
 
 [ ] Add some instructions to index to explain the steps needed to:
 
-    [ ] Download the app as a PWA
+[ ] Download the app as a PWA
 
-    [ ] Update caches so user can operate offline
+[ ] Update caches so user can operate offline
 
-    [ ] Briefily summarize how to drill into the data collection
+[ ] Briefily summarize how to drill into the data collection
 
 [ ] Embiggen the buttons and text so it looks better on mobile.
