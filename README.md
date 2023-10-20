@@ -14,6 +14,7 @@
 
     npm run dev
 
+
 ## Setup the database connection
 
 - Ceate the file **/.env** and add the key value pairs (the Supabase keys can be ignored until we want to integrate OAuth):
@@ -69,6 +70,7 @@ Note that once a database is seeded, executing the **db seed* command again will
 - When complete, follow the "Metrics" link to view the data that has been captured.
 - When connected to a network, click the "Upload all" button. NOTE that this is destructive and remove the data from the local device. I will add a "todo" to make sure we only delete data from the local cache only if it was successfulyl uploaded.
 
+
 ## Todo
 
 - Auth. I already have Supabase authenticating against the Azure AD. I removed it from the app as I had a brief issue where the app kept redirecting to /login. 
@@ -80,4 +82,6 @@ Note that once a database is seeded, executing the **db seed* command again will
     - Briefily summarize how to drill into the data collection
 - Embiggen the buttons and text so it looks better on mobile.
 - Upon executing "Metrics" > "Upload all", only delete the locally cached data if we can validate that it was successfully uploaded.
-
+- Host db in Azure.
+- Host app in Azure
+- Create a Fairport Robotics Supabase accout to support the stupid-simple OAth provider(s)? The app CAN support Azure/Google/Github currently as I have those configured in my Supabase account/project.
