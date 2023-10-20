@@ -22,6 +22,25 @@
     - DATABASE_URL=""
 - Open /prisma/schema.prisma and change the **datasource db** object to reflect the desired database. I have posted the connection string to the Postgres instance in Teams.
 
+As an example, when the schema was going through churn, I had **/prisma/schema.prisma** configured as: 
+
+    datasource db {
+        provider = "sqlite"
+        url      = env("DATABASE_URL")
+    }
+
+and the **.env** reflected the secret as:
+
+    DATABASE_URL_LOCAL="file:./scouting-app.db"
+
+This allowed me to very easily delete the db and execute
+
+    npx prisma generate
+    npx prisma db push
+    npx prisma db seed
+
+and have a clean instance of the db. 
+
 
 ## Deploying the Database
 
