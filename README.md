@@ -2,7 +2,7 @@
 
 - Written in [Nuxt3.js](https://nuxt.com/) (Vue framework)
 - Styles by [Tailwind.css](https://tailwindcss.com/)
-- Backend is a Postgres DB in a personal [Supabase](https://supabase.com/) account. I'm not concerned with usag at this point as the free tier is quite generous. Additionally, I'm sure that whatever app we eventually write will use our Azure account.
+- Backend is a Postgres DB in a personal [Supabase](https://supabase.com/) account. I'm not concerned with usage at this point as the free tier is quite generous. Additionally, I'm sure that whatever app we eventually write will use our Azure account.
 - Deployed and hosted by my personal [Netlify](https://www.netlify.com/) account. Again, I am not concerned as I know that whatever app we use will be hosted in Azure.
 - Schema and seed data managed by [Prisma](https://www.prisma.io/) as described below.
 - Navigate to https://benevolent-rolypoly-ae1a7c.netlify.app/ to execute the app.
