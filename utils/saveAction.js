@@ -5,6 +5,7 @@ export default function (action) {
     let actions = JSON.parse(localStorage.getItem("scout_metrics")) ?? []
     
     let newAction = {
+        metricId: null,
         seasonId: scope.season,
         tournamentId: scope.tournament,
         matchTypeId: scope.matchType,
@@ -13,7 +14,7 @@ export default function (action) {
         teamId: scope.team,
         actionId: action.actionId,
         fromDate: action.fromDate,
-        throughDate: action.throughDate
+        throughDate: action.throughDate,
     }
 
     // Save the action.

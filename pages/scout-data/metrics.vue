@@ -20,25 +20,36 @@ const metricsDictionary = ref(null)
 const uploadAll = async () => {
     let metrics = getMetricsFromCache()
 
+    // Enumerate the saved Actions and persist each Action that has not yet been
+    // saved.
     for(let i = 0; i < metrics.length; i++) {
-        let metric = metrics[0]
-        await useFetch("/api/prisma/metric/create", {
-            method: "POST",
-            body: {
-                tournamentId: metric.tournamentId,
-                matchId: metric.matchTypeId,
-                round: metric.matchRound,
-                allianceId: metric.matchAllianceId,
-                teamId: metric.teamId,
-                actionId: metric.actionId,
-                fromDate: metric.fromDate,
-                throughDate: metric.throughDate,
-            }
-        })  
+        let metric = metrics[i]
+
+        // If the metric has not yet been saved, save it and capture the id.
+        // I want to test this at Ruckus and I do not want to accidentally lose
+        // the data.
+        if(!metric.metricId) {
+            let res = await useFetch("/api/prisma/metric/create", {
+                method: "POST",
+                body: {
+                    tournamentId: metric.tournamentId,
+                    matchId: metric.matchTypeId,
+                    round: metric.matchRound,
+                    allianceId: metric.matchAllianceId,
+                    teamId: metric.teamId,
+                    actionId: metric.actionId,
+                    fromDate: metric.fromDate,
+                    throughDate: metric.throughDate,
+                }
+            })
+
+            metric.metricId = res?.data?.value?.id
+            metrics[i] = metric
+        }
     }
 
-    localStorage.removeItem("scout_metrics")
-    metricsDictionary.value = null
+    // Push the Actions back into localStorage and worry about it after Ruckus.
+    localStorage.setItem("scout_metrics", JSON.stringify(metrics))
 }
 
 const createMetricsDictionary = (data) => {

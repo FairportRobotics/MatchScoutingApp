@@ -151,11 +151,14 @@ Teams
 async function seedTeams() {
 
     let teams = [
+        { number: 0, name: "Scouting App Training Team" },
         { number: 191, name: "X-CATS" },
         { number: 340, name: "G.R.R. (Greater Rochester Robotics)" },
         { number: 378, name: "The Circuit Stompers" },
+        { number: 379, name: "The RoboCats" },
         { number: 424, name: "Rust Belt Robotics" },
         { number: 578, name: "R-cubed - Red Raider Robotics" },
+        { number: 610, name: "Crescent Coyotes" },
         { number: 639, name: "Code Red Robotics" },
         { number: 1075, name: "Sprockets" },
         { number: 1114, name: "Simbotics" },
@@ -184,14 +187,17 @@ async function seedTeams() {
         { number: 3799, name: "Electric Fire" },
         { number: 3838, name: "Roc City Robotix" },
         { number: 3951, name: "SUITS" },
+        { number: 4039, name: "MakeShift Robotics" },
         { number: 4093, name: "Hardwired" },
         { number: 4476, name: "W.A.F.F.L.E.S." },
         { number: 4930, name: "Electric Mayhem" },
         { number: 5020, name: "KilaBots" },
         { number: 5356, name: "TARDIS" },
         { number: 5484, name: "The EnderBots" },
+        { number: 5406, name: "Celt-X" },
         { number: 5485, name: "GorillaBots" },
         { number: 5590, name: "Alumiboti" },
+        { number: 5740, name: "Trojanators" },             
         { number: 5912, name: "Heritage Robotics" },
         { number: 6110, name: "Doc Botics" },
         { number: 6868, name: "Cadet Robotics" },
@@ -220,7 +226,7 @@ async function seedTeams() {
         { number: 23364, name: "Icarus" },
         { number: 23789, name: "Rust Belt Robotics" },
         { number: 24043, name: "USA Eagles" },
-        { number: 24462, name: "RocSci" },        
+        { number: 24462, name: "RocSci" },
     ]
 
     try {
