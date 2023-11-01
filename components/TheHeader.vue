@@ -6,15 +6,6 @@
                 <div class=" ">Home</div>
             </div>
         </NuxtLink>
-        <div class="flex flex-row items-center justify-center space-x-2">
-            <NuxtLink class="nav-link" to="/scout-setup/season">Scout</NuxtLink>
-        </div>
-        <div class="flex flex-row items-center justify-center space-x-2">
-            <NuxtLink class="nav-link" to="/scout-data/metrics">Metrics</NuxtLink>
-        </div>
-        <div class="flex flex-row items-center justify-center space-x-2">
-            <NuxtLink class="nav-link" to="/caches">Caches</NuxtLink>
-        </div>
     </nav>
 </template>
 

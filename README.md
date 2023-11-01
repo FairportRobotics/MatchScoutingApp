@@ -1,91 +1,96 @@
 ## Summary
 
-- Written in [Nuxt3.js](https://nuxt.com/) (Vue framework)
+I wrote a prototype of an application that was able to authenticate, collect data, upload data and operate as either a website or PWA.
+
+- Code is stored in [Github](https://github.com/FairportRobotics/MatchScoutingApp)
+- Written in [Nuxt3.js](https://nuxt.com/) (Vue.js framework)
 - Styles by [Tailwind.css](https://tailwindcss.com/)
-- Backend is a Postgres DB in a personal [Supabase](https://supabase.com/) account. I'm not concerned with usage at this point as the free tier is quite generous. Additionally, I'm sure that whatever app we eventually write will use our Azure account.
-- Deployed and hosted by my personal [Netlify](https://www.netlify.com/) account. Again, I am not concerned as I know that whatever app we use will be hosted in Azure.
-- Schema and seed data managed by [Prisma](https://www.prisma.io/) as described below.
-- Navigate to https://benevolent-rolypoly-ae1a7c.netlify.app/ to execute the app.
-- App can be download as a PWA ([Progressive Web App](https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps)) and run on any device offline (after refreshing the caches locally)
-- All lookup data and captured data is stored as JSON in localStorage. This is less-than ideal but good enough and fast enough to have allowed a reduced development cycle.
 
 
-## Setup the Development Environment
-- Download or clone the source
-- Open the source folder in VS Code
-- From a terminal (either external or the terminal integrated into VS Code) execute the following command
+The bulk of the code in the prototype was scrapped as its usefullness was served in addressing specific development points. Now that I know we can DO those things, I wanted to start with a cleaner slate. 
 
-    npm run dev
+Additionally, we still have not decided to use this stack. We might still go with Flutter/Dart. 
 
+## Authentication
 
-## Setup the database connection
+In a previous iteration of a Scouting App prototype, I'd used Supabase to to act as an OAth provider with social logins provided by Azure, Google and Github. The Azure connection operated against our Azure Encarta ID resource.
 
-- Ceate the file **/.env** and add the key value pairs (the Supabase keys can be ignored until we want to integrate OAuth):
-    - SUPABASE_URL=""
-    - SUPABASE_KEY=""
-    - DATABASE_URL=""
-- Open /prisma/schema.prisma and change the **datasource db** object to reflect the desired database. I have posted the connection string to the Postgres instance in Teams.
+Ideally, we want to skip using a third-party like Firebase or Supabase and operate directly against our Azure resources. I'll look into this.
 
-As an example, when the schema was going through churn, I had **/prisma/schema.prisma** configured as: 
+I'll record useful links to assist in this investigation here:
 
-    datasource db {
-        provider = "sqlite"
-        url      = env("DATABASE_URL")
-    }
+[Single-page application: App registration](https://learn.microsoft.com/en-us/entra/identity-platform/scenario-spa-app-registration)
 
-and the **.env** reflected the secret as:
+[Tutorial: Sign in users and call the Microsoft Graph API from a JavaScript single-page app (SPA) using auth code flow](https://learn.microsoft.com/en-us/entra/identity-platform/tutorial-v2-javascript-auth-code)
 
-    DATABASE_URL_LOCAL="file:./scouting-app.db"
+## Authorization
 
-This allowed me to very easily delete the db and execute:
+We likely want to restrict access to certain functions. I don't expect any bad actors, but we should prevent accidental mutation of data that we've cultivated.
 
-    npx prisma generate
-    npx prisma db push
-    npx prisma db seed
+Scouter:
 
-and have a clean instance of the db. 
+- Can call into Web API endpoints that retrieve data to be cached locally.
+- Can perform scouting operations.
+- Can call into Web API endppint(s) that save scouted data.
 
+Games Management:
 
-## Deploying the Database
+- Can call into Web API endpoints that retrieve data to be cached locally.
+- Can view metrics collected by Scouters.
 
-The app uses [Prisma](https://www.prisma.io/docs) as an ORM. Prisma supports many different types of databases. The application is currently configured to operate against a Postgres instance hosted in Supabase.
+Admin:
 
-By changing **/prisma/schema.prisma**, you can change the schema and relationships. Note that Mongo has different requirements as documented at the [Prisma schema reference](https://www.prisma.io/docs/reference/api-reference/prisma-schema-reference).
+- Can trigger Web API endpoint(s) that refresh our caches from The Blue Alliance.
+- Can edit caches of data in CosmosDB
+- Can assign members to other Roles.
+- Can read QR Codes from Scouters and can call into Web API endpoint(s) that save the data.
 
-To initialize a new database instance, run the following commands within a termina in the root directory of the source:
+## Retrieve and Cache Data from The Blue Alliance into CosmosDB
 
-    npx prisma generate
-    npx prisma db push
+ We should author one or more Web API endpoints to:
 
-To seed data into the database, run the following command within a termina in the root directory of the source
+- Call into The Blue Aplliance
+- Persist results into our own CosmosDB
+- Persist ETAG and provide to future calls to TBA so we comply with their requirements
 
-    npx prisma db seed
+What data do we want to cache?
 
-Note that once a database is seeded, executing the **db seed* command again will all the data in the script unless it is removed or commented out. This means that if you seed the data and later want to add new data, you will need to comment out some parts of the script and add new sections.
+- Events
+- Teams
 
+## Retrieve and Cache Data from CosmosDB for use in App
 
-## Operating the app
+Again, we should author Web API endpoints to interface with the cached and transformed data in CosmosDB. We can use data directly saved from TBA but there are likely additional mutations or edits we'd like to apply to provide more context for our team.
 
-- Navigate to the app
-- Follow the "Caches" link
-- Click the "Refresh" button(s) and the app will download the data from the db, and overwrite the local cache in localStorage.
-- Follow the "Scout" link to begin configuring and recording cycles for teams.
-- When complete, follow the "Metrics" link to view the data that has been captured.
-- When connected to a network, click the "Upload all" button. NOTE that this is destructive and remove the data from the local device. I will add a "todo" to make sure we only delete data from the local cache only if it was successfulyl uploaded.
+We need to cache this data locally on whatever device the scouter us using. We cannot expect or guarantee that a scouter will be able to use their personal device to connect to our endpoints. They might have time or data limits on their devices.
 
+We need to cache locally but also allow them to manually enter values for feautures like events, matches and teams.
 
-## Todo
+Actions includes, but might not be limited to:
 
-- Pinia for state management. Though Pinia uses localStorage under the hood, it provides a better interface to that data and provides hooks to detect when there are changes. It might make updting state easier than: retrieve data from LocalStorage > parse to JSON > make changes > serialzie to JSON > save to localStorage.
-- Auth. I already have Supabase authenticating against the Azure AD. I removed it from the app as I had a brief issue where the app kept redirecting to /login. 
-    - Revisit configuring auth against our Azure AD instance. If we don't want to bother with that...
-    - Provide a means of allowing the user to enter their name and cache it for later upload.
-- Add some instructions to index to explain the steps needed to:
-    - Download the app as a PWA
-    - Update caches so user can operate offline
-    - Briefily summarize how to drill into the data collection
-- Embiggen the buttons and text so it looks better on mobile.
-- Upon executing "Metrics" > "Upload all", only delete the locally cached data if we can validate that it was successfully uploaded.
-- Host db in Azure. Mr Elmer mentioned Mongo. Can we run ad-hoc queries against the data easily enough?
-- Host app in Azure
-- Create a Fairport Robotics Supabase accout to support the stupid-simple OAth provider(s)? The app CAN support Azure/Google/Github currently as I have those configured in my Supabase account/project.
+- Retrieve and cache one or more upcoming events.
+- Retrieve and cache teams associated with upcoming events.
+- Retrieve and cache the Activity Tree through which scouters will navigate to collect cycle times and other data.
+
+## Collect Scouting Data
+
+We need to collect and store this data locally until we are able to persist the data into our CosmosDB instance.
+
+- LocalStorage is a simple solution for this. Can can store simple JSON documents into a key/value pair then deserialize/serialize from the Scouting App.
+- IndexedDB would be better but there is a greater barrier to entry with this as there is schema management and migrations to consider.
+
+## Upload Data
+
+Once a scouter has completed collecting data for a match, we want to persist the data into CosmosDB as quickly as possible so Game Management has the metrics it needs to make alliance decisions.
+
+- Call into the Web API directly from the Scouting App if a network connection or cellular connection are available.
+- Encode the collected data into a QR Code which can be read from a connected device which will then call our Web API to persist into CosmosDB.
+
+## Scouting Data
+
+We need to decide the properties of the scouting data we intened to to collect. From convesations we've had, I know this includes:
+
+- Cycle Times: What was the timespan between a team's interaction with a game piece or feature and a score or other end-condition? For example, how long did it take for a team to score in the top row after picking up a cone?
+- Score Types: For example, in 2023 Charged Up, how many scores did a team account for in the top, middle and bottom locations? 
+- Break Downs: Did a robot complete the match? Did it stop responding or was otherwise incapacitated? Does it maktter to us whether it broke or was, for example, tipped over and unable to be righted?
+
