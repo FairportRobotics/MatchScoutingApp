@@ -94,3 +94,8 @@ We need to decide the properties of the scouting data we intened to to collect. 
 - Score Types: For example, in 2023 Charged Up, how many scores did a team account for in the top, middle and bottom locations? 
 - Break Downs: Did a robot complete the match? Did it stop responding or was otherwise incapacitated? Does it maktter to us whether it broke or was, for example, tipped over and unable to be righted?
 
+## Build and Deploy
+
+I've successfully configured our Azure account to interface with the [MatchScoutingApp Github repository](https://github.com/FairportRobotics/MatchScoutingApp) and perform a build action and deploy.
+
+The application is now hosted in [Azure as a Static Web App](https://purple-meadow-021d6b010.4.azurestaticapps.net/).
