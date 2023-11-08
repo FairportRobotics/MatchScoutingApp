@@ -12,6 +12,9 @@
             </a> 
             for details on the state and plans for this applicaiton.
         </p>
+        <p>
+            <NuxtLink to="/2023" class="text-blue-500">2023 Charged Up Playground</NuxtLink>
+        </p>
     </div>
 </template>
 
