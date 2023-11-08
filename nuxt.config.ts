@@ -20,9 +20,9 @@ export default defineNuxtConfig({
 				{ hid: "description", name: "description", content: ""},
 				{ name: "format-detection", content: "telephone=no"},
 			],
-			script: [
-				{ hid: "fa", defer: true, src: "(url to FontAwesome CDN)" }
-			],
+			// script: [
+			// 	{ hid: "fa", defer: true, src: "(url to FontAwesome CDN)" }
+			// ],
 			link: [
 				{ rel: "preconnect", href: "https://fonts.google.com" },
 				{ rel: "preconnect", href: "https://fonts.gstatic.com" },

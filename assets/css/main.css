@@ -2,29 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-.nav-link {
-    @apply  hover:border-b hover:border-red-500
-}
-
-.next-default {
-    @apply flex flex-row items-center justify-between 
-    w-full my-1 p-1
-      
-    border rounded-lg
-}
-
-.next-action-allowed {
-    @apply bg-white hover:bg-blue-200 cursor-pointer
-}
-
-.next-action-inactive {
-    @apply bg-gray-200 hover:bg-gray-200 cursor-default
-}
-
-.metric-section {
-    @apply ml-2 pl-2
-}
-
-.button-default {
-    @apply bg-gray-200 hover:bg-blue-200 cursor-pointer border rounded-lg
+.end-2023 {
+    @apply border-4 border-gray-300 rounded-lg w-2/12 h-24 flex flex-row items-center justify-center;
 }
