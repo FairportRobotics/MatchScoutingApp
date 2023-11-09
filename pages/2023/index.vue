@@ -7,11 +7,18 @@
     </div>
 
     <!-- Start of Action -->
+    <h2 class="font-semibold">Select start of action:</h2>
     <div class="flex flex-row items-center justify-between gap-1 my-2">
+      <!-- Charge -->
+      <button class="border-gray-200 border-2 rounded-full p-2" @click="handleState('charge')">
+        <div class="text-green-500">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-16" viewBox="0 0 24 24"><path fill="currentColor" d="m8.5 19l2.5-4H9.5v-3L7 16h1.5v3ZM6 10h6V5H6v5ZM4 21V5q0-.825.588-1.413T6 3h6q.825 0 1.413.588T14 5v7h1.25q.725 0 1.238.513T17 13.75v4.625q0 .425.35.775t.775.35q.45 0 .788-.35t.337-.775V9H19q-.425 0-.713-.288T18 8V6h.5V4.5h1V6h1V4.5h1V6h.5v2q0 .425-.288.713T21 9h-.25v9.375q0 1.05-.763 1.838T18.126 21q-1.075 0-1.85-.788t-.775-1.837V13.75q0-.125-.063-.188t-.187-.062H14V21H4Z"/></svg>
+        </div>
+      </button>
 
       <!-- Cone -->
       <button 
-        class="border-gray-200 border-2 rounded-lg p-2" 
+        class="border-gray-200 border-2 rounded-full p-2" 
         @click="handleState('cone')"
       >
         <div class="text-orange-500">
@@ -22,21 +29,14 @@
       </button>
 
       <!-- Cube -->
-      <button class="border-gray-200 border-2 rounded-lg p-2" @click="handleState('cube')">
+      <button class="border-gray-200 border-2 rounded-full p-2" @click="handleState('cube')">
         <div class="text-purple-500">
           <svg xmlns="http://www.w3.org/2000/svg" class="w-16" viewBox="0 0 512 512"><path fill="currentColor" d="M440.9 136.3a4 4 0 0 0 0-6.91L288.16 40.65a64.14 64.14 0 0 0-64.33 0L71.12 129.39a4 4 0 0 0 0 6.91L254 243.88a4 4 0 0 0 4.06 0ZM54 163.51a4 4 0 0 0-6 3.49v173.89a48 48 0 0 0 23.84 41.39L234 479.51a4 4 0 0 0 6-3.46V274.3a4 4 0 0 0-2-3.46ZM272 275v201a4 4 0 0 0 6 3.46l162.15-97.23A48 48 0 0 0 464 340.89V167a4 4 0 0 0-6-3.45l-184 108a4 4 0 0 0-2 3.45Z"/></svg>
         </div>
       </button>
 
-      <!-- Charge -->
-      <button class="border-gray-200 border-2 rounded-lg p-2" @click="handleState('charge')">
-        <div class="text-green-500">
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-16" viewBox="0 0 24 24"><path fill="currentColor" d="m8.5 19l2.5-4H9.5v-3L7 16h1.5v3ZM6 10h6V5H6v5ZM4 21V5q0-.825.588-1.413T6 3h6q.825 0 1.413.588T14 5v7h1.25q.725 0 1.238.513T17 13.75v4.625q0 .425.35.775t.775.35q.45 0 .788-.35t.337-.775V9H19q-.425 0-.713-.288T18 8V6h.5V4.5h1V6h1V4.5h1V6h.5v2q0 .425-.288.713T21 9h-.25v9.375q0 1.05-.763 1.838T18.126 21q-1.075 0-1.85-.788t-.775-1.837V13.75q0-.125-.063-.188t-.187-.062H14V21H4Z"/></svg>
-        </div>
-      </button>
-
       <!-- Robot Inactive/Active Toggle -->
-      <button class="border-gray-200 border-2 rounded-lg p-2" @click="handleState('active')">
+      <button class="border-gray-200 border-2 rounded-full p-2" @click="handleState('active')">
         <div v-if="robotActive" class="text-red-500">
           <svg xmlns="http://www.w3.org/2000/svg" class="w-16" viewBox="0 0 24 24"><path fill="currentColor" d="M22 14h-1c0-3.87-3.13-7-7-7h-1V5.73A2 2 0 1 0 10 4c0 .74.4 1.39 1 1.73V7h-1c-3.87 0-7 3.13-7 7H2c-.55 0-1 .45-1 1v3c0 .55.45 1 1 1h1v1a2 2 0 0 0 2 2h14c1.11 0 2-.89 2-2v-1h1c.55 0 1-.45 1-1v-3c0-.55-.45-1-1-1M9.86 16.68l-1.18 1.18l-1.18-1.18l-1.18 1.18l-1.18-1.18l1.18-1.18l-1.18-1.18l1.18-1.18l1.18 1.18l1.18-1.18l1.18 1.18l-1.18 1.18l1.18 1.18m9 0l-1.18 1.18l-1.18-1.18l-1.18 1.18l-1.18-1.18l1.18-1.18l-1.18-1.18l1.18-1.18l1.18 1.18l1.18-1.18l1.18 1.18l-1.18 1.18l1.18 1.18Z"/></svg>
         </div>
@@ -48,14 +48,6 @@
     </div>
     
     <Y2023Grids :alliance="alliance" />
-
-    <div class="flex flex-row items-center justify-around">
-      <button class="border-gray-200 border-2 rounded-lg p-2">
-        <div class="text-red-500">
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-16" viewBox="0 0 16 16"><g fill="currentColor"><path d="M10.371 8.277v-.553c0-.827-.422-1.234-.987-1.234c-.572 0-.99.407-.99 1.234v.553c0 .83.418 1.237.99 1.237c.565 0 .987-.408.987-1.237Zm2.586-.24c.463 0 .735-.272.735-.744s-.272-.741-.735-.741h-.774v1.485h.774Z"/><path d="M4.893 0a.5.5 0 0 0-.353.146L.146 4.54A.5.5 0 0 0 0 4.893v6.214a.5.5 0 0 0 .146.353l4.394 4.394a.5.5 0 0 0 .353.146h6.214a.5.5 0 0 0 .353-.146l4.394-4.394a.5.5 0 0 0 .146-.353V4.893a.5.5 0 0 0-.146-.353L11.46.146A.5.5 0 0 0 11.107 0H4.893ZM3.16 10.08c-.931 0-1.447-.493-1.494-1.132h.653c.065.346.396.583.891.583c.524 0 .83-.246.83-.62c0-.303-.203-.467-.637-.572l-.656-.164c-.61-.147-.978-.51-.978-1.078c0-.706.597-1.184 1.444-1.184c.853 0 1.386.475 1.436 1.087h-.645c-.064-.32-.352-.542-.797-.542c-.472 0-.77.246-.77.6c0 .261.196.437.553.522l.654.161c.673.164 1.06.487 1.06 1.11c0 .736-.574 1.228-1.544 1.228Zm3.427-3.51V10h-.665V6.57H4.753V6h3.006v.568H6.587Zm4.458 1.16v.544c0 1.131-.636 1.805-1.661 1.805c-1.026 0-1.664-.674-1.664-1.805V7.73c0-1.136.638-1.807 1.664-1.807c1.025 0 1.66.674 1.66 1.807ZM11.52 6h1.535c.82 0 1.316.55 1.316 1.292c0 .747-.501 1.289-1.321 1.289h-.865V10h-.665V6.001Z"/></g></svg>
-        </div>
-      </button>        
-    </div>
     
   </div>
 </template>

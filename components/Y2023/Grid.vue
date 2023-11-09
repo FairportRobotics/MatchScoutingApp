@@ -27,6 +27,4 @@ const props = defineProps<{
   alliance: string
 }>()
 
-console.log("gridType:", props.gridType, ", alliance:", props.alliance)
-
 </script>
