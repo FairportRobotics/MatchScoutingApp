@@ -6,10 +6,10 @@
       <Y2023Grid gridType="outer" :alliance="alliance" />
     </div>
     <div class="flex flex-row items-center justify-center gap-4">
-      <button class="bg-blue-500 text-white py-1 px-2 rounded-lg w-3/12">
+      <button class="bg-blue-500 text-white py-1 px-2 rounded-lg w-48">
         Save
       </button>
-      <button class="bg-red-500 text-white py-1 px-2 rounded-lg w-3/12">
+      <button class="bg-red-500 text-white py-1 px-2 rounded-lg w-48">
         Cancel
       </button>
     </div>
