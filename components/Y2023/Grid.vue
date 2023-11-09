@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full p-1">
+  <div class="w-full">
     <div class="flex flex-row items-center justify-center">
       <Y2023GridNode :gridType="props.gridType" :alliance="props.alliance" nodeType="cone" />
       <Y2023GridNode :gridType="props.gridType" :alliance="props.alliance" nodeType="cube" />

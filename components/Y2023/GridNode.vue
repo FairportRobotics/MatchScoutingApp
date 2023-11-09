@@ -1,10 +1,10 @@
 <template>
   <button 
-    class="w-full text-white aspect-square m-px rounded-lg flex items-center justify-center"
+    class="w-full text-white aspect-square m-px rounded-sm flex items-center justify-center"
     :class="{
-      'bg-blue-600': props.gridType == 'outer' && props.alliance == 'blue',
-      'bg-red-600': props.gridType == 'outer' && props.alliance == 'red',
-      'bg-slate-600': props.gridType == 'co-op',
+      'bg-blue-800': props.gridType == 'outer' && props.alliance == 'blue',
+      'bg-red-800': props.gridType == 'outer' && props.alliance == 'red',
+      'bg-slate-800': props.gridType == 'co-op',
     }"  
   >
     <div v-if="props.nodeType == 'cone'" class="p-1 w-full">

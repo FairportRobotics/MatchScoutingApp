@@ -1,15 +1,15 @@
 <template>
   <div>
-    <div class="flex flex-row items-center justify-center w-full gap-1">
+    <div class="flex flex-row items-center justify-center w-full">
       <Y2023Grid gridType="outer" :alliance="alliance" />
       <Y2023Grid gridType="co-op" :alliance="alliance" />
       <Y2023Grid gridType="outer" :alliance="alliance" />
     </div>
     <div class="flex flex-row items-center justify-center gap-4">
-      <button class="bg-blue-500 text-white py-2 px-4 rounded-lg w-3/12">
-        Done
+      <button class="bg-blue-500 text-white py-1 px-2 rounded-lg w-3/12">
+        Save
       </button>
-      <button class="bg-blue-500 text-white py-2 px-4 rounded-lg w-3/12">
+      <button class="bg-red-500 text-white py-1 px-2 rounded-lg w-3/12">
         Cancel
       </button>
     </div>
